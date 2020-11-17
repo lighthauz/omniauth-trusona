@@ -1,8 +1,6 @@
-# Omniauth::Trusona
+# OmniAuth Trusona
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/omniauth/trusona`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+An OmniAuth strategy for Trusona. This strategy uses the OIDC Implicit flow to integrate Trusona with OmniAuth
 
 ## Installation
 
@@ -20,17 +18,64 @@ Or install it yourself as:
 
     $ gem install omniauth-trusona
 
+
 ## Usage
 
-TODO: Write usage instructions here
+To use this OmniAuth Strategy, you will first need to create an OIDC Integration with Trusona. This will provide you with a `client_id` that can be used in the usage examples below.
+
+## Creating an OIDC Integration with Trusona
+
+1. Login into our [Dashboard](https://dashboard.trusona.com)
+1. On the left hand side under Integrations client Generic OIDC
+1. Click the Create OpenID Connection Integration
+1. Provide a meaningful to you name for the Integartion
+1. For Client Redirect Host, enter the domain name where your service is hosted. You can provide more than one host separated by commas.
+1. Click Save
+1. The `client_id` will be shown in the list of OIDC Integrations. Save this for use with the Strategy.
+
+## Basic Usage
+
+```ruby
+use OmniAuth::Builder do
+  provider :trusona, client_id: ENV['TRUSONA_CLIENT_ID']
+end
+```
+
+## Basic Rails Usage
+In `config/initializers/trusona.rb`:
+```ruby
+  Rails.application.config.middleware.use OmniAuth::Builder do
+    provider :trusona, client_id: ENV['TRUSONA_CLIENT_ID']
+  end
+```
+
+## Basic Devise Usage
+In `/config/initializers/devise.rb`:
+```ruby
+  # ==> OmniAuth
+  # Add a new OmniAuth provider. Check the wiki for more information on setting
+  # up on your models and hooks.
+  config.omniauth :trusona,
+  {
+    client_id: ENV['TRUSONA_CLIENT_ID']
+  }
+```
+
+In `app/models/user.rb`:
+```ruby
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :omniauthable, omniauth_providers: [:trusona]
+```
 
 ## Development
+The redirect url must be an HTTPS url.  For local development, you can try running this to set up an ssl proxy.
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```
+npm install -g local-ssl-proxy
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+local-ssl-proxy --source 3001 --target 3000
+```
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/omniauth-trusona.
-
+Then run your rails app as normal.  In the browser, use `https://localhost:3001`.

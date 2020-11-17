@@ -1,0 +1,17 @@
+AllCops:
+  NewCops: enable
+
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - 'lib/omniauth-trusona.rb'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/omniauth-trusona/id_token_spec.rb
+    - spec/omniauth/strategies/trusona_spec.rb
