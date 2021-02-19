@@ -17,7 +17,7 @@ module RailsDevise
     # config.action_dispatch.cookies_same_site_protection = nil
 
     config.action_dispatch.cookies_same_site_protection = lambda { |request|
-      return :lax unless request.path&.include? '/users/auth/trusona'
+      :lax unless request.path&.include? '/users/auth/trusona'
     }
 
     # Configuration for the application, engines, and railties goes here.
