@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    omniauth-trusona (0.1.0)
+    omniauth-trusona (0.2.0)
       json-jwt (~> 1.13)
       omniauth-oauth2 (~> 1.7)
       omniauth-rails_csrf_protection (~> 0.1)
