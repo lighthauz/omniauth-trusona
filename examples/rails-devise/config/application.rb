@@ -13,9 +13,7 @@ module RailsDevise
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
-    # Disable this default until we can be sure it works with omniauth, default is :lax
     # config.action_dispatch.cookies_same_site_protection = nil
-
     config.action_dispatch.cookies_same_site_protection = lambda { |request|
       :lax unless request.path&.include? '/users/auth/trusona'
     }
