@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -9,7 +11,13 @@ Bundler.require(*Rails.groups)
 module RailsDevise
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
+
+    # Disable this default until we can be sure it works with omniauth, default is :lax
+    # config.action_dispatch.cookies_same_site_protection = nil
+
+    config.force_ssl = true
+    config.action_dispatch.cookies_same_site_protection = :none
 
     # Configuration for the application, engines, and railties goes here.
     #
