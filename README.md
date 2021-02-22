@@ -80,14 +80,6 @@ local-ssl-proxy --source 3001 --target 3000
 
 Then run your rails app as normal.  In the browser, use `https://localhost:3001`.
 
-## Rails Example
-We've provided a Rails Example that uses the gem at `/examples/rails-devise`.  Please note that application.rb has the following configuration:
-
-```
-config.force_ssl = true
-config.action_dispatch.cookies_same_site_protection = :none
-```
-
 ## SSL
 
 OIDC requires SSL for communications which means if you are running this project locally, you will need to server over https.  We accomplish that with the following local ssl proxy.  See the Development notes above
@@ -101,3 +93,10 @@ Add a .env file to the root with
 
 See above for details on obtaining a client id
 
+## Rails Example
+We've provided a Rails Example that uses the gem at `/examples/rails-devise`.  Please note that application.rb has the following configuration:
+
+```
+config.force_ssl = true
+config.action_dispatch.cookies_same_site_protection = :none
+```
