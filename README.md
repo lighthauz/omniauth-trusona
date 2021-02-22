@@ -80,11 +80,6 @@ local-ssl-proxy --source 3001 --target 3000
 
 Then run your rails app as normal.  In the browser, use `https://localhost:3001`.
 
-## SSL
-
-OIDC requires SSL for communications which means if you are running this project locally, you will need to server over https.  We accomplish that with the following local ssl proxy.  See the Development notes above
-
-
 ## CLIENT_ID
 
 Add a .env file to the root with 
