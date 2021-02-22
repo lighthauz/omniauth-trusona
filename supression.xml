@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+  <suppress until="2021-04-01Z">
+      <notes>
+        <![CDATA[Omniauth currently offers no fix for this issue, but the workaround is here: https://github.com/omniauth/omniauth/wiki/Resolving-CVE-2015-9284]]>
+      </notes>
+      <cve>CVE-2015-9284</cve>
+    </suppress>
+</suppressions>

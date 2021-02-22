@@ -29,8 +29,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency('json-jwt', '~> 1.13')
+  spec.add_dependency('omniauth', '~> 1.9')
   spec.add_dependency('omniauth-oauth2', '~> 1.7')
-
+  spec.add_dependency('omniauth-rails_csrf_protection', '~> 0.1')
   spec.add_development_dependency('guard', '~> 2.16')
   spec.add_development_dependency('guard-rspec', '~> 4.7')
   spec.add_development_dependency('guard-rubocop', '~> 1.0')
